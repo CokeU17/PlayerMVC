@@ -1,8 +1,23 @@
-fileFormatVersion: 2
-guid: 0e78458bc8c942f45857417d9182573b
-folderAsset: yes
-DefaultImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    private PlayerModel model;
+    private PlayerView view;
+
+    void Start()
+    {
+        model = new PlayerModel();
+        view = GetComponent<PlayerView>();
+    }
+
+    void Update()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 direction = new Vector3(horizontal, vertical, 0);
+
+        view.Move(direction, model.speed);
+    }
+}
